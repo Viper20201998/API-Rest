@@ -75,31 +75,25 @@ const excelAJson = () => {
 
 const subirExcel = async (req, res) => {
 	const dat = excelAJson();
-	
 
 	//console.log(dat);
 
 	for (let i = 0; i < dat.length; i++) {
+		let id = dat[i]['id'];
+		let idA = dat[i]['idA'];
+		let idM = dat[i]['idM'];
+		let grupo = dat[i]['grupo'];
+		let aula = dat[i]['aula'];
+		let nota = dat[i]['nota'];
 
-       let id = dat[i]["id"];
-       let idA = dat[i]["idA"];
-       let idM = dat[i]["idM"];
-       let grupo = dat[i]["grupo"];
-       let aula = dat[i]["aula"];
-       let nota = dat[i]["nota"];
-
-       const response = await pool.query(
-        'INSERT INTO evaluaciones (idevaluaciones, idalumnos, idmaestros, grupo, aula, notas) VALUES ($1, $2, $3, $4, $5, $6)',
-        [id, idA, idM, grupo, aula, nota]
-    );
+		const response = await pool.query(
+			'INSERT INTO evaluaciones (idevaluaciones, idalumnos, idmaestros, grupo, aula, notas) VALUES ($1, $2, $3, $4, $5, $6)',
+			[id, idA, idM, grupo, aula, nota]
+		);
 
 		//console.log(dat[i]);
-		console.log(dat[i]["idA"]);
-        
-		
-	};
-
-		
+		console.log(dat[i]['idA']);
+	}
 
 	res.send('hecho');
 };
@@ -111,5 +105,5 @@ module.exports = {
 	createUsers,
 	updateUser,
 	deleteUser,
-	subirExcel
+	subirExcel,
 };
