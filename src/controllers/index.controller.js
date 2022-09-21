@@ -22,22 +22,22 @@ const getUsersById = async (req, res) => {
 };
 
 const createUsers = async (req, res) => {
-    const { id, nombre, apellido, edad, sexo, correo, telefono} = req.body;
+    const { id, nombre, apellido, edad, sexo, correo, telefono } = req.body;
 
-    const response = await pool.query('INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES ($1, $2, $3, $4, $5, $6, $7)',[id, nombre, apellido, edad, sexo, correo, telefono]);
+    const response = await pool.query('INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES ($1, $2, $3, $4, $5, $6, $7)', [id, nombre, apellido, edad, sexo, correo, telefono]);
 
     console.log(response);
     res.json({
         message: 'user added succesfully',
         body: {
-            user: {id, nombre, apellido, edad, sexo, correo, telefono}
+            user: { id, nombre, apellido, edad, sexo, correo, telefono }
         }
     });
 };
 
 const updateUser = async (req, res) => {
     const id = req.params.id;
-    const {nombre, apellido, edad, sexo, correo, telefono} = req.body;
+    const { nombre, apellido, edad, sexo, correo, telefono } = req.body;
 
     const response = await pool.query('UPDATE alumnos SET nombre = $1, apellido = $2, edad = $3, sexo = $4, correo = $5, telefono = $6 WHERE idAlumnos = $7', [
         nombre,
