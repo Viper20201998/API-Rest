@@ -2,7 +2,14 @@ const { Router } = require('express');
 const router = Router();
 
 //importamos lo que viene de la carpeta controllers
-const { getUsers, createUsers, getUsersById, deleteUser, updateUser } = require('../controllers/index.controller')
+const {
+	getUsers,
+	createUsers,
+	getUsersById,
+	deleteUser,
+	updateUser,
+    subirExcel
+} = require('../controllers/index.controller');
 
 router.get('/users', getUsers);
 router.get('/users/:id', getUsersById);
@@ -12,7 +19,7 @@ router.post('/users', createUsers);
 router.put('/users/:id', updateUser);
 //eliminar
 router.delete('/users/:id', deleteUser);
-
-
+//subir archivo excel
+router.post('/user', subirExcel);
 
 module.exports = router;
