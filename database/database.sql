@@ -1,81 +1,156 @@
 CREATE DATABASE betacode;
 
-CREATE TABLE maestros(
-    idMaestros INT PRIMARY KEY,
-    nombre VARCHAR(50),
-    apellido VARCHAR(50),
-    usuario VARCHAR(30),
-    contra VARCHAR(30)
-    );
+CREATE TABLE maestros (
+  idMaestros int PRIMARY KEY,
+  nombre varchar(50),
+  apellido varchar(50)
+);
 
-    INSERT INTO maestros (idMaestros, nombre, apellido, usuario, contra) VALUES (1, 'les', 'enins', 'les1', '30345');
-    INSERT INTO maestros (idMaestros, nombre, apellido, usuario, contra) VALUES (2, 'vip', 'sain', 'vles2', '25445');
-    INSERT INTO maestros (idMaestros, nombre, apellido, usuario, contra) VALUES (3, 'scorp', 'els', 'scels3', '56gjs');
-    INSERT INTO maestros (idMaestros, nombre, apellido, usuario, contra) VALUES (4, 'test', 'cod', 'tcd4', '502038dkc');
+    INSERT INTO maestros (idMaestros, nombre, apellido) VALUES (1, 'les', 'enins');
+    INSERT INTO maestros (idMaestros, nombre, apellido) VALUES (2, 'vip', 'sain');
+    INSERT INTO maestros (idMaestros, nombre, apellido) VALUES (3, 'scorp', 'els');
+    INSERT INTO maestros (idMaestros, nombre, apellido) VALUES (4, 'test', 'cod');
 
     SELECT * FROM maestros;
 
+CREATE TABLE alumnos (
+  idAlumnos int PRIMARY KEY,
+  nombre varchar(50),
+  apellido varchar(50),
+  correo varchar(50),
+  telefono varchar(50)
+);
+
+SELECT * FROM alumnos;
+
+CREATE TABLE grupos (
+  idGrupos int PRIMARY KEY,
+  nombre varchar(50)
+);
+
+INSERT INTO grupos (idGrupos, nombre) VALUES (1, 'backend');
+INSERT INTO grupos (idGrupos, nombre) VALUES (2, 'frontend');
+INSERT INTO grupos (idGrupos, nombre) VALUES (3, 'devops');
+INSERT INTO grupos (idGrupos, nombre) VALUES (4, 'mobile');
+
+SELECT * FROM grupos;
+
+CREATE TABLE aulas (
+  idAulas int,
+  idGrupos int,
+  nombre varchar(50)
+);
+
+INSERT INTO aulas (idAulas, idGrupos, nombre) VALUES (1, 1, 'A1');
+INSERT INTO aulas (idAulas, idGrupos, nombre) VALUES (2, 2, 'A2');
+INSERT INTO aulas (idAulas, idGrupos, nombre) VALUES (3, 3, 'A3');
+INSERT INTO aulas (idAulas, idGrupos, nombre) VALUES (4, 4, 'A4');
+
+SELECT * FROM aulas;
+
+CREATE TABLE evaluaciones (
+  idEvaluaciones int PRIMARY KEY,
+  nombre varchar(50)
+);
+
+SELECT * FROM evaluaciones;
+
+CREATE TABLE nota (
+  idNota int PRIMARY KEY,
+  idEvaluaciones int,
+  idAlumnos int,
+  notas varchar(50)
+);
+
+SELECT * FROM nota;
+
+CREATE TABLE grMaestro (
+  idgMaestro int PRIMARY KEY,
+  idMaestros int,
+  idGrupos int
+);
+
+INSERT INTO grMaestro (idgMaestro, idMaestros, idGrupos) VALUES (1, 1, 1);
+INSERT INTO grMaestro (idgMaestro, idMaestros, idGrupos) VALUES (2, 2, 2);
+INSERT INTO grMaestro (idgMaestro, idMaestros, idGrupos) VALUES (3, 3, 3);
+INSERT INTO grMaestro (idgMaestro, idMaestros, idGrupos) VALUES (4, 4, 4);
+
+SELECT * FROM grMaestro;
+
+CREATE TABLE grAlumnos (
+  idgAlumnos int PRIMARY KEY,
+  idAlumnos int,
+  idGrupos int
+);
+--backend
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (1, 1, 1);
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (2, 2, 1);
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (3, 3, 1);
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (4, 4, 1);
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (5, 5, 1);
+
+--frontend
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (6, 6, 2);
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (7, 7, 2);
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (8, 8, 2);
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (9, 9, 2);
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (10, 10, 2);
+
+--devops
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (11, 11, 3);
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (12, 12, 3);
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (13, 13, 3);
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (14, 14, 3);
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (15, 15, 3);
+
+--mobile
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (16, 16, 4);
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (17, 17, 4);
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (18, 18, 4);
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (19, 19, 4);
+INSERT INTO grAlumnos (idgAlumnos, idAlumnos, idGrupos) VALUES (20, 20, 4);
+
+SELECT * FROM grAlumnos;
+
+CREATE TABLE usuari (
+  idUser int PRIMARY KEY,
+  idMaestros int,
+  usuario varchar(50),
+  contra varchar(50)
+);
+
+INSERT INTO usuari (idUser, idMaestros, usuario, contra) VALUES (1, 1, 'les1', 'abcd1');
+INSERT INTO usuari (idUser, idMaestros, usuario, contra) VALUES (2, 2, 'vip2', 'abcd2');
+INSERT INTO usuari (idUser, idMaestros, usuario, contra) VALUES (3, 3, 'scorp3', 'abcd3');
+INSERT INTO usuari (idUser, idMaestros, usuario, contra) VALUES (4, 4, 'test4', 'abcd4');
+
+SELECT * FROM usuari;
+
+ALTER TABLE usuari ADD FOREIGN KEY (idMaestros) REFERENCES maestros (idMaestros);
+
+ALTER TABLE grAlumnos ADD FOREIGN KEY (idAlumnos) REFERENCES alumnos (idAlumnos);
+
+ALTER TABLE nota ADD FOREIGN KEY (idEvaluaciones) REFERENCES evaluaciones (idEvaluaciones);
+
+ALTER TABLE grMaestro ADD FOREIGN KEY (idMaestros) REFERENCES maestros (idMaestros);
+
+ALTER TABLE grMaestro ADD FOREIGN KEY (idGrupos) REFERENCES grupos (idGrupos);
+
+ALTER TABLE aulas ADD FOREIGN KEY (idGrupos) REFERENCES grupos (idGrupos);
+
+ALTER TABLE grAlumnos ADD FOREIGN KEY (idGrupos) REFERENCES grupos (idGrupos);
+
+ALTER TABLE nota ADD FOREIGN KEY (idAlumnos) REFERENCES alumnos (idAlumnos);
 
 
-    CREATE TABLE alumnos(
-        idAlumnos INT PRIMARY KEY,
-        nombre VARCHAR(50),
-        apellido VARCHAR(50),
-        edad VARCHAR(3),
-        sexo VARCHAR(2),
-        correo VARCHAR(100),
-        telefono VARCHAR(18)
-    );
-    
-    --Grupo 1 backend
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (1, 'les', 'enins', '45', 'm', 'les@gmail.com','70754809');
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (2, 'les2', 'enins2', '18', 'f', 'les2@gmail.com','70754823');
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (3, 'les3', 'enins3', '23', 'm', 'les3@gmail.com','70754834');
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (4, 'les4', 'enins4', '54', 'f', 'les4@gmail.com','70754876');
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (5, 'les5', 'enins5', '78', 'm', 'les5@gmail.com','70754845');
-     
-     --Grupo 2 frontend
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (6, 'les6', 'enins6', '30', 'f', 'les6@gmail.com','70754898');
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (7, 'les7', 'enins7', '36', 'f', 'les7@gmail.com','70754856');
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (8, 'les8', 'enins8', '18', 'm', 'les8@gmail.com','70754845');
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (9, 'les9', 'enins9', '56', 'f', 'les9@gmail.com','70754867');
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (10, 'les10', 'enins10', '23', 'm', 'les10@gmail.com','70754854');
-     
-     --Grupo 3 devops
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (11, 'les11', 'enins11', '18', 'm', 'les11@gmail.com','70754834');
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (12, 'les12', 'enins12', '34', 'f', 'les12@gmail.com','70754890');
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (13, 'les13', 'enins13', '67', 'm', 'les13@gmail.com','70754867');
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (14, 'les14', 'enins14', '32', 'f', 'les14@gmail.com','70754812');
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (15, 'les15', 'enins15', '12', 'm', 'les15@gmail.com','70754856');
-     
-     --Grupo 4 mobile
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (16, 'les16', 'enins16', '23', 'm', 'les16@gmail.com','70754887');
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (17, 'les17', 'enins17', '24', 'm', 'les17@gmail.com','70754840');
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (18, 'les18', 'enins18', '23', 'f', 'les18@gmail.com','70754823');
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (19, 'les19', 'enins19', '27', 'm', 'les19@gmail.com','70754845');
-     INSERT INTO alumnos (idAlumnos, nombre, apellido, edad, sexo, correo, telefono) VALUES (20, 'les20', 'enins20', '28', 'f', 'les20@gmail.com','70754801');
-     
-     SELECT * FROM alumnos;
+DROP TABLE user;
+DROP TABLE maestros;
+DROP TABLE alumnos;
+DROP TABLE nota;
+DROP TABLE aulas;
+DROP TABLE grupos;
+DROP TABLE evaluaciones;
+DROP TABLE grAlumnos;
+DROP TABLE grMaestro;
 
-    CREATE TABLE evaluaciones(
-        idEvaluaciones INT PRIMARY KEY,
-        idAlumnos INT,
-        idMaestros INT,
-        grupo VARCHAR(20),
-        aula VARCHAR(4),
-        notas VARCHAR(2),
-        FOREIGN KEY (idMaestros)
-        REFERENCES maestros (idMaestros)
-        ON DELETE CASCADE,
-        FOREIGN KEY (idAlumnos)
-        REFERENCES alumnos (idAlumnos)
-        ON DELETE CASCADE
-    );
-
-    SELECT * FROM evaluaciones;
-    
-    --4 Evaluaciones del alumno 1 les grupo de backend
-    INSERT INTO evaluaciones (idEvaluaciones, idAlumnos, idMaestros, grupo, aula, notas) VALUES (1, 1, 1, 'g1', 'A1', '4');
-    INSERT INTO evaluaciones (idEvaluaciones, idAlumnos, idMaestros, grupo, aula, notas) VALUES (2, 1, 1, 'g1', 'A1', '5');
-    INSERT INTO evaluaciones (idEvaluaciones, idAlumnos, idMaestros, grupo, aula, notas) VALUES (3, 1, 1, 'g1', 'A1', '6');
-    INSERT INTO evaluaciones (idEvaluaciones, idAlumnos, idMaestros, grupo, aula, notas) VALUES (4, 1, 1, 'g1', 'A1', '8');
+DELETE FROM NOTA;
