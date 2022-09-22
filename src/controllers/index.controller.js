@@ -13,7 +13,7 @@ const pool = new Pool({
 
 //lista todos los registros de los alumnos como JSON
 const getUsers = async (req, res) => {
-	const response = await pool.query('SELECT * FROM alumnos'); 
+	const response = await pool.query('SELECT * FROM alumnos');
 	res.status(200).json(response.rows);
 };
 
@@ -100,14 +100,25 @@ const insNotas = async (req, res) => {
 //login de los maestros
 
 const logMaster = async (req, res) => {
-	const {usuario, contra} = req.body;
+	const { usuario, contra } = req.body;
 
-	const response = await pool.query('SELECT * FROM usuari WHERE usuario = $1 AND contra = $2',
-	[usuario, contra]
+	const response = await pool.query(
+		'SELECT usuario, contra FROM usuari WHERE usuario = $1 AND contra = $2',
+		[usuario, contra]
 	);	
-	res.send('bienbenido');
 	
-	
+	if (response.rows == '') {
+		res.send('no ha ingresado usuario o contra o usuario o contra incorrectos');
+	} else {
+		for (i = 0; i < response.rows.length; i++) {
+			let usu = response.rows[i]['usuario'];
+			let cotr = response.rows[i]['contra'];
+
+			if (usuario == usu && contra == cotr) {
+				res.send('usuario logeado correcta mente');
+			} else res.send('usuario o contra incorrectas');
+		}
+	}
 };
 
 //generador de registros de la tabla alumnos
@@ -150,5 +161,5 @@ module.exports = {
 	insNotas,
 	genReEvaluacion,
 	genReAlumnos,
-	logMaster
+	logMaster,
 };

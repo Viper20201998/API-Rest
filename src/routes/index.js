@@ -11,7 +11,8 @@ const {
     insNotas,
 	genReEvaluacion,
 	genReAlumnos,
-	logMaster
+	logMaster,
+	getMag
 } = require('../controllers/index.controller');
 
 //solo se ejecutan 1 vez//
@@ -20,7 +21,7 @@ router.post('/genEvaluaciones', genReEvaluacion); //generar registros de la tabl
 router.post('/genAlumnos', genReAlumnos); //genera registros de la tabla alumnos en total 20
 
 //le enviamos un json con las credenciales
-router.get('/login', logMaster);
+router.post('/login', logMaster);
 
 //lista de todos los estudiantes
 router.get('/alumnos', getUsers);
