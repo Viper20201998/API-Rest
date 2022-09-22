@@ -154,3 +154,12 @@ DROP TABLE grAlumnos;
 DROP TABLE grMaestro;
 
 DELETE FROM NOTA;
+
+
+
+select g.nombre, a.nombre, m.nombre
+from grupos as g 
+inner join aulas a on g.idgrupos = a.idgrupos
+inner join grmaestro gm on g.idgrupos = gm.idgrupos
+inner join maestros m on gm.idmaestros = m.idmaestros
+;
