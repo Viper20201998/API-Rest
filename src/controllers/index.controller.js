@@ -161,5 +161,5 @@ module.exports = {
 	insNotas,
 	genReEvaluacion,
 	genReAlumnos,
-	logMaster,
+	logMaster
 };

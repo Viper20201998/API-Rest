@@ -11,8 +11,7 @@ const {
     insNotas,
 	genReEvaluacion,
 	genReAlumnos,
-	logMaster,
-	getMag
+	logMaster
 } = require('../controllers/index.controller');
 
 //solo se ejecutan 1 vez//
