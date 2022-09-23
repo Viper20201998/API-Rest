@@ -52,6 +52,7 @@ localhost:3000/actAlumnos/1
 }
 
 -----router('/') metodo delete---
+
 /delAlumno/:id elimina registros de los alumnos
 localhost:3000/delAlumno/1 
 
